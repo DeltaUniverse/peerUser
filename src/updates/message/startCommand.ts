@@ -2,8 +2,17 @@ import { InlineKeyboard } from "grammy";
 
 import { middleware } from "@middleware";
 
-const animationFileId =
-  "CgACAgQAAyEFAAMBAsnPlgAD9mphFJ44IyUflPYlgHWFAAEi5TvHfgACLQ4AAk6ySFBWQ49JzIi9mj0E";
+const msgText = `
+Add to Channel
+• Remove New Subscribers
+
+Add to Group
+• Reply with Ephemeral Message
+• Sed
+
+Add to Chat Automation
+• Delete New Private Messages
+`;
 
 middleware.chatType("private")
   .command("start")
@@ -13,7 +22,7 @@ middleware.chatType("private")
 
       await Promise.all([
         ctx.deleteMessage(),
-        ctx.replyWithAnimation(animationFileId, {
+        ctx.reply(msgText, {
           reply_markup: new InlineKeyboard()
             .url(
               "Add to Channel",
