@@ -1,0 +1,18 @@
+{
+  "imports": {
+    "grammy": "npm:grammy@1.45.1",
+    "@config": "./src/config.ts",
+    "@middleware": "./src/middleware.ts",
+    "@utils": "./src/utils.ts"
+  },
+  "include": [
+    "deno.json",
+    "main.ts",
+    "src/"
+  ],
+  "lint": {
+    "rules": {
+      "tags": ["recommended"]
+    }
+  }
+}
