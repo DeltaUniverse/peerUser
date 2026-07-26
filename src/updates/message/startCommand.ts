@@ -4,7 +4,7 @@ import { middleware } from "@middleware";
 
 const msgText = `
 *Channel*
- • Ban-Unban Chat Member
+ • Ban\\-Unban Chat Member
 
 *Group*
  • Reply with Ephemeral Message
