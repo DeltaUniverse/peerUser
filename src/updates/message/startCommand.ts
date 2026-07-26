@@ -3,15 +3,17 @@ import { InlineKeyboard } from "grammy";
 import { middleware } from "@middleware";
 
 const msgText = `
-Add to Channel
-• Remove New Subscribers
+*Add to Channel*
+ • Remove New Subscribers
 
-Add to Group
-• Reply with Ephemeral Message
-• Sed
+*Add to Group*
+ • Reply with Ephemeral Message
+ • Sed
 
-Add to Chat Automation
-• Delete New Private Messages
+*Add to Chat Automation*
+ • Delete New Private Messages
+
+\\[ *[Source](https://github.com/DeltaUniverse/peerUser)* \\]
 `;
 
 middleware.chatType("private")
@@ -23,6 +25,7 @@ middleware.chatType("private")
       await Promise.all([
         ctx.deleteMessage(),
         ctx.reply(msgText, {
+          link_preview_options: { is_disabled: true },
           reply_markup: new InlineKeyboard()
             .url(
               "Add to Channel",
@@ -34,6 +37,7 @@ middleware.chatType("private")
             )
             .row()
             .url("Add to Chat Automation", "tg://settings/edit"),
+          parse_mode: "MarkdownV2",
         }),
       ]);
     },
