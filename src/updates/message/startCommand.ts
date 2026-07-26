@@ -28,15 +28,15 @@ middleware.chatType("private")
           link_preview_options: { is_disabled: true },
           reply_markup: new InlineKeyboard()
             .url(
-              "Add to Channel",
+              "Channel",
               `https://t.me/${meUsername}?startchannel&admin=restrict_members`,
             )
             .url(
-              "Add to Group",
+              "Group",
               `https://t.me/${meUsername}?startgroup&admin=manage_chat`,
             )
             .row()
-            .url("Add to Chat Automation", "tg://settings/edit"),
+            .url("Chat Automation", "tg://settings/edit"),
           parse_mode: "MarkdownV2",
         }),
       ]);
