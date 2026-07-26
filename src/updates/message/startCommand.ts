@@ -3,15 +3,15 @@ import { InlineKeyboard } from "grammy";
 import { middleware } from "@middleware";
 
 const msgText = `
-*Add to Channel*
- • Remove New Subscribers
+*Channel*
+ • Ban-Unban Chat Member
 
-*Add to Group*
+*Group*
  • Reply with Ephemeral Message
  • Sed
 
-*Add to Chat Automation*
- • Delete New Private Messages
+*Chat Automation*
+ • Delete Business Messages
 
 \\[ *[Source](https://github.com/DeltaUniverse/peerUser)* \\]
 `;

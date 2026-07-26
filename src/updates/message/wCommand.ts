@@ -1,7 +1,7 @@
 import { middleware } from "@middleware";
 
 middleware.chatType("supergroup")
-  .command("em")
+  .command("w")
   .filter(
     (ctx) => {
       if (!ctx.msg.ephemeral_message_id) return false;
