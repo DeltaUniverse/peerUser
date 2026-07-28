@@ -1,39 +1,36 @@
 import { middleware } from "@middleware";
 
 middleware.chatType("supergroup")
-  .command("w")
+  .command("whisper")
   .filter(
     (ctx) => {
       if (!ctx.msg.ephemeral_message_id) return false;
       if (!ctx.match) return false;
 
-      const msg = ctx.msg.reply_to_message;
+      const replyMsg = ctx.msg.reply_to_message;
 
-      if (!msg) return false;
-      if (!msg.from) return false;
-      if (msg.from.is_bot) return false;
-      if (msg.from.id === ctx.from.id) return false;
-      if (msg.ephemeral_message_id) return false;
+      if (!replyMsg) return false;
+      if (!replyMsg.from) return false;
+      if (replyMsg.from.is_bot) return false;
+      if (replyMsg.from.id === ctx.from.id) return false;
 
       return true;
     },
-  )
-  .use(
     async (ctx) => {
-      const msg = ctx.msg.reply_to_message!;
-      const msgText = ctx.match;
-      const reply_parameters = { message_id: msg.message_id };
+      const replyMsg = ctx.msg.reply_to_message!;
+      const replyMsgText = ctx.match;
+      const reply_parameters = { message_id: replyMsg.message_id };
 
-      const offset = msgText.length + 4;
+      const offset = replyMsgText.length + 4;
       const length = 4;
 
       await Promise.all([
-        ctx.reply(msgText, {
+        ctx.reply(replyMsgText, {
           receiver_user_id: ctx.from.id,
           reply_parameters,
         }),
-        ctx.reply(`${msgText}\n\n[ From ]`, {
-          receiver_user_id: msg.from!.id,
+        ctx.reply(`${replyMsgText}\n\n[ From ]`, {
+          receiver_user_id: replyMsg.from!.id,
           entities: [
             {
               offset,

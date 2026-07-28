@@ -10,8 +10,6 @@ middleware.on("business_message")
 
       return true;
     },
-  )
-  .use(
     async (ctx) => {
       const { rights, user } = await ctx.getBusinessConnection();
 

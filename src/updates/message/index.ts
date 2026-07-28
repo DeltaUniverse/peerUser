@@ -1,4 +1,11 @@
 import "./_Command.ts";
+import "./banCommand.ts";
+import "./jsonCommand.ts";
+import "./kickCommand.ts";
+import "./muteCommand.ts";
+import "./richCommand.ts";
 import "./sed.ts";
 import "./startCommand.ts";
-import "./wCommand.ts";
+import "./unbanCommand.ts";
+import "./unmuteCommand.ts";
+import "./whisperCommand.ts";

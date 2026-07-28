@@ -10,8 +10,6 @@ middleware.chatType("supergroup")
     (ctx) => {
       return userIds.includes(ctx.from.id);
     },
-  )
-  .use(
     async (ctx) => {
       let input = ctx.msg.caption ?? ctx.msg.text ?? "";
 
@@ -23,7 +21,7 @@ middleware.chatType("supergroup")
         input = input.slice(tag.length).trimStart();
       }
 
-      const { inline_message_id: iMsgId } = await ctx.answerGuestQuery(
+      const inlineMsg = await ctx.answerGuestQuery(
         InlineQueryResultBuilder.article("0", "0").text("..."),
       );
 
@@ -32,7 +30,14 @@ middleware.chatType("supergroup")
       const startMs = performance.now();
 
       try {
-        output = await aEval(input, { ctx, iMsgId });
+        output = await aEval(input, {
+          ctx,
+          api: ctx.api,
+          raw: ctx.api.raw,
+          msg: ctx.msg,
+          replyMsg: ctx.msg.reply_to_message,
+          inlineMsg,
+        });
 
         if (input.endsWith("return;")) return;
       } catch (e) {
@@ -60,7 +65,7 @@ middleware.chatType("supergroup")
       reply_markup.switchInlineCurrent(">_", `\n${input}`).text("_<", "0");
 
       await ctx.api.editMessageTextInline(
-        iMsgId,
+        inlineMsg.inline_message_id,
         `${output}\n${deltaMs}`,
         {
           entities: [

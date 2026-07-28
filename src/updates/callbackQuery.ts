@@ -6,8 +6,6 @@ middleware.callbackQuery("0")
     (ctx) => {
       return userIds.includes(ctx.from.id);
     },
-  )
-  .use(
     async (ctx) => {
       if (ctx.msg?.ephemeral_message_id) {
         await ctx.deleteEphemeralMessage();

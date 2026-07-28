@@ -14,10 +14,8 @@ middleware.chatType("supergroup")
 
       return true;
     },
-  )
-  .use(
     async (ctx) => {
-      const msg = await ctx.reply("...", {
+      const ephemeralMsg = await ctx.reply("...", {
         reply_parameters: {
           ephemeral_message_id: ctx.msg.ephemeral_message_id,
         },
@@ -29,7 +27,14 @@ middleware.chatType("supergroup")
       const startMs = performance.now();
 
       try {
-        output = await aEval(ctx.match, { ctx, msg });
+        output = await aEval(ctx.match, {
+          ctx,
+          api: ctx.api,
+          raw: ctx.api.raw,
+          msg: ctx.msg,
+          replyMsg: ctx.msg.reply_to_message,
+          ephemeralMsg,
+        });
 
         if (ctx.match.endsWith("return")) return;
       } catch (e) {
@@ -58,7 +63,7 @@ middleware.chatType("supergroup")
       await ctx.api.editEphemeralMessageText(
         ctx.chatId,
         ctx.from.id,
-        msg.ephemeral_message_id!,
+        ephemeralMsg.ephemeral_message_id!,
         `${output}\n${deltaMs}`,
         {
           entities: [
