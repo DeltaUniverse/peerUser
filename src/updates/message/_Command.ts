@@ -1,6 +1,6 @@
 import { InlineKeyboard } from "grammy";
 
-import { userIds } from "@config";
+import { authIds } from "@config";
 import { middleware } from "@middleware";
 import { aEval, fmtMs, paste, toStr } from "@utils";
 
@@ -8,7 +8,7 @@ middleware.chatType("supergroup")
   .command("_")
   .filter(
     (ctx) => {
-      if (!userIds.includes(ctx.from.id)) return false;
+      if (!authIds.includes(ctx.from.id)) return false;
       if (!ctx.msg.ephemeral_message_id) return false;
       if (!ctx.match) return false;
 

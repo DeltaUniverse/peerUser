@@ -1,10 +1,17 @@
-import { userIds } from "@config";
+import { authIds } from "@config";
 import { middleware } from "@middleware";
+
+middleware.on("callback_query:data")
+  .fork(
+    (ctx) => {
+      ctx.answerCallbackQuery();
+    },
+  );
 
 middleware.callbackQuery("0")
   .filter(
     (ctx) => {
-      return userIds.includes(ctx.from.id);
+      return authIds.includes(ctx.from.id);
     },
     async (ctx) => {
       if (ctx.msg?.ephemeral_message_id) {

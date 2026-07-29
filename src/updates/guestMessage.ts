@@ -1,6 +1,6 @@
 import { InlineKeyboard, InlineQueryResultBuilder } from "grammy";
 
-import { secretToken, userIds } from "@config";
+import { authIds, secretToken } from "@config";
 import { middleware } from "@middleware";
 import { aEval, fmtMs, paste, toStr } from "@utils";
 
@@ -8,7 +8,7 @@ middleware.chatType("supergroup")
   .on("guest_message")
   .filter(
     (ctx) => {
-      return userIds.includes(ctx.from.id);
+      return authIds.includes(ctx.from.id);
     },
     async (ctx) => {
       let input = ctx.msg.caption ?? ctx.msg.text ?? "";
