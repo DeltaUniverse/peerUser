@@ -4,23 +4,46 @@ import { middleware } from "@middleware";
 
 const msgText = `
 *Channel*
-  • Ban\\-Unban Chat Member \\(Auto\\)
+  • Remove New Chat Member
+    Auto\\-Remove New Subscribers
 
-*Chat Automation*
+*Chat Automation \\(Enabled __Manage Messages__\\)*
   • Delete Business Messages
+    Auto\\-Delete New Incoming PMs
 
 *Group*
-  • Ban
-  • Kick
-  • Mute
-  • Unban
-  • Unmute
-  • Whisper
+  Administrators with __Ban Users__ Rights:
+    • Ban \\(Ban Chat Member\\)
+      Reply to Member with /ban
+
+    • Kick \\(Remove Chat Member\\)
+      Reply to Member with /kick
+
+    • Mute \\(Restrict Chat Member\\)
+      Reply to Member with /mute
+
+    • Unban \\(Unban Chat Member\\)
+      Reply to Member with /unban
+
+    • Unmute \\(Unrestrict Chat Member\\)
+      Reply to Member with /unmute
+
+  All Members:
+    • Whisper \\(Send Ephemeral Message\\)
+      Reply to User with /whisper and Message Text
+
+  Notes:
+    All Commands is __Ephemeral Command__
 
 *Private/Group*
-  • JSON 
-  • Rich
+  • JSON \\(Message Object as JSON\\)
+    Send/Reply to Message with /json
+
+  • Rich \\(Rich Text Editor\\)
+    Send /rich with Markdown/HTML Format Text
+
   • Sed
+    Reply to Content with sed Command
 `;
 
 middleware.chatType("private")

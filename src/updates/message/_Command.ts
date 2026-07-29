@@ -23,7 +23,6 @@ middleware.chatType("supergroup")
       });
 
       let output;
-
       const startMs = performance.now();
 
       try {
@@ -35,14 +34,11 @@ middleware.chatType("supergroup")
           replyMsg: ctx.msg.reply_to_message,
           ephemeralMsg,
         });
-
-        if (ctx.match.endsWith("return")) return;
       } catch (e) {
         output = String(e);
       }
 
       const deltaMs = fmtMs(performance.now() - startMs);
-
       const reply_markup = new InlineKeyboard();
 
       output = toStr(output);

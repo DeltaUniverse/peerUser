@@ -26,7 +26,6 @@ middleware.chatType("supergroup")
       );
 
       let output;
-
       const startMs = performance.now();
 
       try {
