@@ -1,6 +1,6 @@
 import { InlineKeyboard } from "grammy";
 
-import { authIds } from "@config";
+import { authIds, kv } from "@config";
 import { middleware } from "@middleware";
 import { aEval, fmtMs, paste, toStr } from "@utils";
 
@@ -27,6 +27,7 @@ middleware.chatType("supergroup")
 
       try {
         output = await aEval(ctx.match, {
+          kv,
           ctx,
           api: ctx.api,
           raw: ctx.api.raw,

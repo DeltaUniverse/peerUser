@@ -13,3 +13,4 @@ export const authIds = authIdsString
   : [];
 
 export const secretToken = botToken.split(":")[1];
+export const kv = await Deno.openKv();

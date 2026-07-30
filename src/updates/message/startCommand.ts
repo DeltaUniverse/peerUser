@@ -63,7 +63,7 @@ middleware.chatType("private")
         )
         .url(
           "Group",
-          `https://t.me/${meUsername}?startgroup&admin=restrict_members`,
+          `https://t.me/${meUsername}?startgroup&admin=restrict_members+invite_users`,
         )
         .row()
         .url("Chat Automation", "tg://settings/edit"),
