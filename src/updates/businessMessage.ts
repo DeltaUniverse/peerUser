@@ -24,9 +24,8 @@ middleware.on("business_message")
 
       const params = {
         reply_markup: new InlineKeyboard()
-          .url("iOS", `https://t.me/@id${fromId}`).primary()
-          .row()
-          .url("Android", `tg://openmessage?user_id=${fromId}`).success(),
+          .url("🍏", `https://t.me/@id${fromId}`).primary()
+          .url("🤖", `tg://openmessage?user_id=${fromId}`).success(),
         entities: msg.entities,
         caption: msg.caption,
         caption_entities: msg.caption_entities,

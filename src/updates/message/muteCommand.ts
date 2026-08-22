@@ -36,6 +36,8 @@ middleware.chatType("supergroup")
       if (userId === fromId) return false;
       if (userId === ctx.me.id) return false;
 
+      if (replyMsg.sender_chat) return false;
+
       const { status } = await ctx.getChatMember(userId);
 
       if (status === "administrator") return false;
@@ -57,6 +59,7 @@ middleware.chatType("supergroup")
       await Promise.all([
         ctx.restrictChatMember(replyMsg.from!.id, chatPermissions),
         ctx.reply("Muted", {
+          entities: [{ offset: 0, length: 5, type: "bold" }],
           receiver_user_id: ctx.from.id,
           reply_parameters: { message_id: replyMsg.message_id },
         }),

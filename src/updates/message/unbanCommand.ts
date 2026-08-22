@@ -17,6 +17,8 @@ middleware.chatType("supergroup")
       if (userId === fromId) return false;
       if (userId === ctx.me.id) return false;
 
+      if (replyMsg.sender_chat) return false;
+
       const { status } = await ctx.getChatMember(userId);
 
       if (status !== "kicked") return false;
@@ -36,6 +38,7 @@ middleware.chatType("supergroup")
       await Promise.all([
         ctx.unbanChatMember(replyMsg.from!.id),
         ctx.reply("Unbanned", {
+          entities: [{ offset: 0, length: 8, type: "bold" }],
           receiver_user_id: ctx.from.id,
           reply_parameters: { message_id: replyMsg.message_id },
         }),

@@ -30,6 +30,6 @@ middleware.chatType("supergroup")
       chat_id: ctx.chatId,
       invite_link,
     }, {
-      expireIn: 1000 * 60 * 15,
+      expireIn: 1000000,
     });
   });

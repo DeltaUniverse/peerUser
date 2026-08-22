@@ -15,9 +15,5 @@ bot.errorBoundary(
   .use(middleware);
 
 Deno.serve(
-  webhookCallback(bot, "std/http", {
-    onTimeout: "return",
-    timeoutMilliseconds: 8192,
-    secretToken,
-  }),
+  webhookCallback(bot, "std/http", { onTimeout: "return", secretToken }),
 );

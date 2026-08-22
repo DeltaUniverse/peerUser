@@ -1,4 +1,3 @@
-import "./_Command.ts";
 import "./banCommand.ts";
 import "./jsonCommand.ts";
 import "./kickCommand.ts";
