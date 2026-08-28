@@ -41,8 +41,8 @@ middleware.chatType("supergroup")
         ctx.unbanChatMember(replyMsg.from!.id),
         ctx.reply("Kicked", {
           entities: [{ offset: 0, length: 6, type: "bold" }],
-          receiver_user_id: ctx.from.id,
           reply_parameters: { message_id: replyMsg.message_id },
+          ephemeral_message_parameters: { receiver_user_id: ctx.from.id },
         }),
       ]);
     },

@@ -27,15 +27,15 @@ middleware.chatType("supergroup")
 
       await Promise.all([
         ctx.reply(ctx.match, {
-          receiver_user_id: ctx.from.id,
           reply_parameters,
+          ephemeral_message_parameters: { receiver_user_id: ctx.from.id },
         }),
         ctx.reply(ctx.match, {
           reply_markup: new InlineKeyboard()
             .url("🍏", `https://t.me/@id${ctx.from.id}`).primary()
             .url("🤖", `tg://openmessage?user_id=${ctx.from.id}`).success(),
-          receiver_user_id: replyMsg.from!.id,
           reply_parameters,
+          ephemeral_message_parameters: { receiver_user_id: replyMsg.from!.id },
         }),
       ]);
     },

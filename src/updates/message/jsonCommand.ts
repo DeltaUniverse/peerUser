@@ -1,7 +1,6 @@
 import { InlineKeyboard } from "grammy";
 
 import { middleware } from "@middleware";
-import { paste } from "@utils";
 
 middleware.command("json")
   .filter(
@@ -26,17 +25,33 @@ middleware.command("json")
       }
 
       await ctx.reply(updateString, {
-        reply_parameters: {
-          ephemeral_message_id: ctx.msg.ephemeral_message_id,
-        },
         entities: [{
           offset: 0,
           length: updateString.length,
           type: "pre",
           language: "json",
         }],
-        receiver_user_id: ctx.from!.id,
         reply_markup,
+        reply_parameters: {
+          ephemeral_message_id: ctx.msg.ephemeral_message_id,
+        },
+        ephemeral_message_parameters: { receiver_user_id: ctx.from!.id },
       });
     },
   );
+
+async function paste(body: string): Promise<string | null> {
+  const apiUrl = "https://paste.rs";
+
+  try {
+    const resp = await fetch(apiUrl, { method: "POST", body });
+
+    if (!resp.ok) return null;
+
+    const url = (await resp.text()).trim();
+
+    return url.startsWith(apiUrl) ? url : null;
+  } catch {
+    return null;
+  }
+}

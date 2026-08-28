@@ -1,9 +1,8 @@
 {
   "imports": {
-    "grammy": "npm:grammy@1.45.1",
+    "grammy": "npm:grammy@1.46.0",
     "@config": "./src/config.ts",
-    "@middleware": "./src/middleware.ts",
-    "@utils": "./src/utils.ts"
+    "@middleware": "./src/middleware.ts"
   },
   "include": [
     "deno.json",

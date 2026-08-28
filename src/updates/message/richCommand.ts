@@ -9,22 +9,28 @@ middleware.command("rich")
       return true;
     },
     async (ctx) => {
+      const reply_parameters = {
+        ephemeral_message_id: ctx.msg.ephemeral_message_id,
+      };
+      const ephemeral_message_parameters = { receiver_user_id: ctx.from!.id };
+
       try {
-        await ctx.replyWithRichMessage({ markdown: ctx.match });
+        await ctx.replyWithRichMessage({ markdown: ctx.match }, {
+          reply_parameters,
+          ephemeral_message_parameters,
+        });
       } catch (e) {
         const eMsg = String(e);
 
         await ctx.reply(eMsg, {
-          receiver_user_id: ctx.from?.id,
-          reply_parameters: {
-            ephemeral_message_id: ctx.msg.ephemeral_message_id,
-          },
           entities: [{
             offset: 0,
             length: eMsg.length,
             type: "pre",
             language: "js",
           }],
+          reply_parameters,
+          ephemeral_message_parameters,
         });
       }
     },

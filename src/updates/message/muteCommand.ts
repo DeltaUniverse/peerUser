@@ -60,8 +60,8 @@ middleware.chatType("supergroup")
         ctx.restrictChatMember(replyMsg.from!.id, chatPermissions),
         ctx.reply("Muted", {
           entities: [{ offset: 0, length: 5, type: "bold" }],
-          receiver_user_id: ctx.from.id,
           reply_parameters: { message_id: replyMsg.message_id },
+          ephemeral_message_parameters: { receiver_user_id: ctx.from.id },
         }),
       ]);
     },
