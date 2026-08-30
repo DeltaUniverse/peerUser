@@ -17,11 +17,10 @@ middleware.command("json")
         const url = await paste(updateString);
 
         if (url) {
-          updateString = `${updateString.slice(0, 1024)} ...`;
           reply_markup = new InlineKeyboard().url("...", url);
-        } else {
-          updateString = `${updateString.slice(0, 3072)} ...`;
         }
+
+        updateString = `${updateString.slice(0, 1024)} ...`;
       }
 
       await ctx.reply(updateString, {
